@@ -13,6 +13,8 @@ a = Analysis(
     datas=[
         # Include markitdown source
         ('markitdown/packages/markitdown/src', 'markitdown/packages/markitdown/src'),
+        # Include data files from markitdown
+        ('markitdown/packages/markitdown', 'markitdown/packages/markitdown'),
     ],
     hiddenimports=[
         'PyQt6.QtCore',

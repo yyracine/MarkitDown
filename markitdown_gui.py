@@ -20,7 +20,27 @@ from PyQt6.QtCore import Qt, QThread, pyqtSignal, QSize
 from PyQt6.QtGui import QIcon, QFont, QTextCursor
 from PyQt6.QtCore import QTimer
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'markitdown', 'packages', 'markitdown'))
+# Handle both development and PyInstaller bundle environments
+def setup_markitdown_path():
+    """Configure le chemin d'accès à MarkItDown pour dev et PyInstaller"""
+    # Check if running as PyInstaller bundle
+    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+        # Running as PyInstaller bundle
+        markitdown_path = os.path.join(sys._MEIPASS, 'markitdown', 'packages', 'markitdown', 'src')
+    else:
+        # Running in development
+        markitdown_path = os.path.join(
+            os.path.dirname(__file__),
+            'markitdown',
+            'packages',
+            'markitdown',
+            'src'
+        )
+
+    if markitdown_path not in sys.path:
+        sys.path.insert(0, markitdown_path)
+
+setup_markitdown_path()
 
 from markitdown import MarkItDown
 
