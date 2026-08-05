@@ -25,8 +25,18 @@ def setup_markitdown_path():
     """Configure le chemin d'accès à MarkItDown pour dev et PyInstaller"""
     # Check if running as PyInstaller bundle
     if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
-        # Running as PyInstaller bundle
-        markitdown_path = os.path.join(sys._MEIPASS, 'markitdown', 'packages', 'markitdown', 'src')
+        # Running as PyInstaller bundle - try _internal first, then root
+        possible_paths = [
+            os.path.join(sys._MEIPASS, '_internal', 'markitdown', 'packages', 'markitdown', 'src'),
+            os.path.join(sys._MEIPASS, 'markitdown', 'packages', 'markitdown', 'src'),
+        ]
+        markitdown_path = None
+        for path in possible_paths:
+            if os.path.exists(path):
+                markitdown_path = path
+                break
+        if not markitdown_path:
+            markitdown_path = possible_paths[0]
     else:
         # Running in development
         markitdown_path = os.path.join(

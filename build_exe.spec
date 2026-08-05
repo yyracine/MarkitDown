@@ -32,6 +32,8 @@ a = Analysis(
         'markdownify',
         'charset_normalizer',
         'defusedxml',
+        'docx',
+        'lxml',
     ],
     hookspath=[],
     hooksconfig={},
