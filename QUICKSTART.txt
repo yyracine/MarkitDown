@@ -1,0 +1,182 @@
+================================================================================
+                    MARKITDOWN GUI - DEMARRAGE RAPIDE
+================================================================================
+
+OBJECTIF: Convertir vos fichiers (PDF, Word, Excel, images, etc.) en Markdown
+
+================================================================================
+1. LANCER L'APPLICATION
+================================================================================
+
+Windows - Double-cliquez sur:
+  → launch_gui.bat
+
+OU Ligne de commande (PowerShell):
+  → .\.venv\Scripts\python .\markitdown_gui.py
+
+OU Vérifier d'abord les prérequis:
+  → .\.venv\Scripts\python .\check_requirements.py
+
+================================================================================
+2. UTILISER L'APPLICATION
+================================================================================
+
+Étape 1: Sélectionner un fichier
+  - Cliquez sur "📁 Sélectionner un fichier"
+  - Choisissez votre fichier (PDF, Excel, Word, PowerPoint, image, etc.)
+
+Étape 2: Configurer (optionnel)
+  - Allez à l'onglet "⚙️ Options" si vous voulez des options avancées
+  - Sinon, laissez les paramètres par défaut
+
+Étape 3: Convertir
+  - Cliquez sur "🔄 Convertir"
+  - Attendez que la conversion se termine (voir la barre de progression)
+  - Le résultat Markdown s'affichera dans le panel droit
+
+Étape 4: Sauvegarder
+  - Cliquez sur "💾 Enregistrer Markdown" pour sauvegarder
+  - OU "📋 Copier le texte" pour copier dans le presse-papiers
+
+================================================================================
+3. FORMATS SUPPORTES
+================================================================================
+
+SANS CONFIGURATION:
+  ✓ PDF                    ✓ Word (.docx)         ✓ Excel (.xlsx)
+  ✓ PowerPoint (.pptx)     ✓ Images (JPG, PNG)    ✓ HTML
+  ✓ CSV, JSON, XML         ✓ Notebooks Jupyter    ✓ EPub
+  ✓ ZIP (itération)        ✓ Outlook Messages     ✓ Texte brut
+
+AVEC CONFIGURATION AZURE:
+  ✓ OCR pour PDFs scannés
+  ✓ Extraction structurée avec champs
+  ✓ Support vidéo (Content Understanding)
+
+AVEC PLUGINS:
+  ✓ OCR via LLM (images dans PDFs)
+  ✓ Et autres plugins disponibles
+
+================================================================================
+4. RACCOURCIS CLES
+================================================================================
+
+Dans l'application:
+  - Ctrl+O : Ouvrir un fichier (sur certains systèmes)
+  - Ctrl+S : Enregistrer (sur certains systèmes)
+  - Ctrl+C : Copier le texte sélectionné
+
+================================================================================
+5. DEPANNAGE RAPIDE
+================================================================================
+
+PROBLEME: "Python not found"
+SOLUTION:
+  - Assurez-vous d'être dans le répertoire ConvertMarkdown
+  - Utilisez: .\.venv\Scripts\python markitdown_gui.py
+
+PROBLEME: "PyQt6 not found"
+SOLUTION:
+  - .\.venv\Scripts\pip install PyQt6
+
+PROBLEME: "Format non supporté"
+SOLUTION:
+  - Installez les dépendances supplémentaires:
+    .\.venv\Scripts\pip install python-pptx pdfplumber
+
+PROBLEME: "La conversion est lente"
+REPONSE:
+  - Normal! Le premier fichier charge les bibliothèques (lent)
+  - Les fichiers volumineux prennent du temps
+  - Les conversions suivantes sont plus rapides
+
+PROBLEME: "L'interface est petite/trop grande"
+SOLUTION:
+  - Redimensionnez la fenêtre avec la souris
+  - Size min: 1000x600, Taille conseillée: 1400x800
+
+================================================================================
+6. FICHIERS CLES
+================================================================================
+
+markitdown_gui.py         → Application graphique principale
+launch_gui.bat            → Script de lancement (Windows)
+launch_gui.ps1            → Script PowerShell (Windows)
+check_requirements.py     → Vérification des prérequis
+README_GUI.md             → Documentation complète
+GUIDE_GUI.md              → Guide détaillé
+QUICKSTART.txt            → Ce fichier
+
+================================================================================
+7. DOCUMENTATION
+================================================================================
+
+Pour plus de détails, lisez:
+  - README_GUI.md       : Guide complet avec tous les paramètres
+  - GUIDE_GUI.md        : Guide détaillé avec exemples
+  - markitdown/README.md: Documentation officielle de MarkItDown
+
+================================================================================
+8. EXEMPLES RAPIDEMENT
+================================================================================
+
+EXEMPLE 1: Convertir un PDF
+  1. Lancez: launch_gui.bat
+  2. Sélectionnez: mon-pdf.pdf
+  3. Convertir!
+  4. Enregistrez: mon-pdf.md
+
+EXEMPLE 2: Extraire du texte d'une image
+  1. Lancez: launch_gui.bat
+  2. Sélectionnez: screenshot.jpg
+  3. Convertir!
+  4. Copiez le texte
+
+EXEMPLE 3: Convertir un Excel
+  1. Lancez: launch_gui.bat
+  2. Sélectionnez: donnees.xlsx
+  3. Convertir!
+  4. Résultat: Tableau Markdown
+
+EXEMPLE 4: Récupérer transcription YouTube
+  1. Lancez: launch_gui.bat
+  2. Sélectionnez: https://youtube.com/watch?v=...
+  3. Convertir!
+  4. Attendez ~10 secondes
+  5. Résultat: Transcription Markdown
+
+================================================================================
+9. PERFORMANCE
+================================================================================
+
+Temps moyen de conversion:
+  - TXT simple           : < 1 seconde
+  - PDF (< 10 pages)     : 2-5 secondes
+  - PDF (> 50 pages)     : 15-30 secondes
+  - Image avec détails   : 2-5 secondes
+  - Excel (1000 lignes)  : 3-8 secondes
+  - PowerPoint           : 3-8 secondes
+  - YouTube (transcription) : 10-20 secondes
+
+*Dépend de votre machine*
+
+================================================================================
+10. SUPPORT ET AIDE
+================================================================================
+
+Application ne démarre pas?
+  → .\.venv\Scripts\python check_requirements.py
+
+Problème avec un format?
+  → Installez les dépendances:
+    .\.venv\Scripts\pip install markitdown[all]
+
+Questions sur MarkItDown?
+  → https://github.com/microsoft/markitdown
+
+Besoin d'aide sur la GUI?
+  → Lisez README_GUI.md ou GUIDE_GUI.md
+
+================================================================================
+                         BON TRAVAIL! 🚀
+================================================================================
