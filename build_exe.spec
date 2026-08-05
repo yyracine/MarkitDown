@@ -9,12 +9,17 @@ block_cipher = None
 a = Analysis(
     ['markitdown_gui.py'],
     pathex=[],
-    binaries=[],
+    binaries=[
+        # Include onnxruntime binaries for magika
+        ('.venv/Lib/site-packages/onnxruntime', 'onnxruntime'),
+    ],
     datas=[
         # Include markitdown source
         ('markitdown/packages/markitdown/src', 'markitdown/packages/markitdown/src'),
         # Include data files from markitdown
         ('markitdown/packages/markitdown', 'markitdown/packages/markitdown'),
+        # Include full magika package
+        ('.venv/Lib/site-packages/magika', 'magika'),
     ],
     hiddenimports=[
         'PyQt6.QtCore',
@@ -25,7 +30,6 @@ a = Analysis(
         'bs4',
         'requests',
         'markdownify',
-        'magika',
         'charset_normalizer',
         'defusedxml',
     ],

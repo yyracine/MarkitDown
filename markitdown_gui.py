@@ -42,6 +42,14 @@ def setup_markitdown_path():
 
 setup_markitdown_path()
 
+# Force PyInstaller to include these modules
+try:
+    import magika
+    import onnxruntime
+    import click
+except ImportError:
+    pass
+
 from markitdown import MarkItDown
 
 
