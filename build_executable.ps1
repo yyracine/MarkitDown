@@ -28,7 +28,7 @@ if (Test-Path "dist") {
 Write-Host ""
 Write-Host "[2/4] Building executable..." -ForegroundColor Yellow
 
-& .\.venv\Scripts\pyinstaller build_exe.spec
+& .\.venv\Scripts\pyinstaller -y build_exe.spec
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[ERROR] Build failed!" -ForegroundColor Red

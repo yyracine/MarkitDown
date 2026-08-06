@@ -27,7 +27,7 @@ if exist dist\ (
 
 echo.
 echo [2/4] Building executable...
-.\.venv\Scripts\pyinstaller build_exe.spec
+.\.venv\Scripts\pyinstaller -y build_exe.spec
 
 echo.
 echo [3/4] Verifying build...
