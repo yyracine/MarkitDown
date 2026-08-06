@@ -4,24 +4,24 @@
 $scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $scriptPath
 
-Write-Host "🚀 Lancement de MarkItDown GUI..." -ForegroundColor Green
+Write-Host "[*] Lancement de MarkItDown GUI..." -ForegroundColor Green
 
 # Chercher Python
 $pythonPath = Get-Command python -ErrorAction SilentlyContinue
 if ($pythonPath) {
-    Write-Host "✓ Python trouvé: $($pythonPath.Source)" -ForegroundColor Green
+    Write-Host "[OK] Python trouvé: $($pythonPath.Source)" -ForegroundColor Green
     & python markitdown_gui.py
     exit 0
 }
 
 # Chercher dans venv
 if (Test-Path ".venv\Scripts\python.exe") {
-    Write-Host "✓ Environnement virtuel trouvé" -ForegroundColor Green
+    Write-Host "[OK] Environnement virtuel trouve" -ForegroundColor Green
     & .\.venv\Scripts\python markitdown_gui.py
     exit 0
 }
 
-Write-Host "❌ Erreur: Python n'a pas pu être trouvé!" -ForegroundColor Red
+Write-Host "[ERROR] Erreur: Python n'a pas pu etre trouve!" -ForegroundColor Red
 Write-Host "Veuillez s'il vous plaît:" -ForegroundColor Yellow
 Write-Host "1. Installer Python (python.org)" -ForegroundColor Yellow
 Write-Host "2. Ou créer un environnement virtuel: python -m venv .venv" -ForegroundColor Yellow

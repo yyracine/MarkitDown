@@ -125,24 +125,24 @@ class MarkItDownGUI(QMainWindow):
         # Toolbar
         toolbar_layout = QHBoxLayout()
 
-        self.select_file_btn = QPushButton("📁 Sélectionner un fichier")
+        self.select_file_btn = QPushButton("[*] Selectionner un fichier")
         self.select_file_btn.clicked.connect(self.select_file)
         self.select_file_btn.setMinimumHeight(40)
         toolbar_layout.addWidget(self.select_file_btn)
 
-        self.convert_btn = QPushButton("🔄 Convertir")
+        self.convert_btn = QPushButton("[>] Convertir")
         self.convert_btn.clicked.connect(self.convert_file)
         self.convert_btn.setMinimumHeight(40)
         self.convert_btn.setEnabled(False)
         toolbar_layout.addWidget(self.convert_btn)
 
-        self.save_btn = QPushButton("💾 Enregistrer Markdown")
+        self.save_btn = QPushButton("[S] Enregistrer Markdown")
         self.save_btn.clicked.connect(self.save_markdown)
         self.save_btn.setMinimumHeight(40)
         self.save_btn.setEnabled(False)
         toolbar_layout.addWidget(self.save_btn)
 
-        self.copy_btn = QPushButton("📋 Copier le texte")
+        self.copy_btn = QPushButton("[C] Copier le texte")
         self.copy_btn.clicked.connect(self.copy_to_clipboard)
         self.copy_btn.setMinimumHeight(40)
         self.copy_btn.setEnabled(False)
@@ -178,7 +178,7 @@ class MarkItDownGUI(QMainWindow):
         # Panel gauche: Aperçu du fichier
         left_widget = QWidget()
         left_layout = QVBoxLayout()
-        left_layout.addWidget(QLabel("📄 Aperçu (optionnel)"))
+        left_layout.addWidget(QLabel("[*] Apercu (optionnel)"))
         self.preview_text = QTextEdit()
         self.preview_text.setReadOnly(True)
         self.preview_text.setPlaceholderText("L'aperçu du fichier original apparaîtra ici après la conversion")
@@ -190,7 +190,7 @@ class MarkItDownGUI(QMainWindow):
         right_layout = QVBoxLayout()
 
         markdown_label_layout = QHBoxLayout()
-        markdown_label_layout.addWidget(QLabel("✨ Markdown Converti"))
+        markdown_label_layout.addWidget(QLabel("[*] Markdown Converti"))
         self.title_label = QLabel()
         self.title_label.setStyleSheet("color: #0066cc; font-weight: bold;")
         markdown_label_layout.addWidget(self.title_label)
@@ -211,7 +211,7 @@ class MarkItDownGUI(QMainWindow):
 
         view_layout.addWidget(splitter)
         view_widget.setLayout(view_layout)
-        tabs.addTab(view_widget, "👁️ Visualisation")
+        tabs.addTab(view_widget, "[V] Visualisation")
 
         # Onglet 2: Options
         options_widget = QWidget()
@@ -267,7 +267,7 @@ class MarkItDownGUI(QMainWindow):
         scroll.setWidget(scroll_content)
         options_layout.addWidget(scroll)
         options_widget.setLayout(options_layout)
-        tabs.addTab(options_widget, "⚙️ Options")
+        tabs.addTab(options_widget, "[#] Options")
 
         # Onglet 3: À propos
         about_widget = QWidget()
@@ -288,13 +288,13 @@ Application graphique pour convertir des fichiers en Markdown.
 - **Données**: CSV, JSON, XML, ZIP
 - **Autres**: Jupyter Notebooks, Outlook Messages
 
-## Caractéristiques
+## Caracteristiques
 
-✨ Conversion rapide et de haute qualité
-🔌 Support des plugins tiers
-☁️ Intégration Azure Document Intelligence et Content Understanding
-📝 Prévisualisation en temps réel
-💾 Sauvegarde facile des résultats
+[*] Conversion rapide et de haute qualite
+[+] Support des plugins tiers
+[cloud] Integration Azure Document Intelligence et Content Understanding
+[doc] Previsualisation en temps reel
+[save] Sauvegarde facile des resultats
 
 ## À propos
 
@@ -304,7 +304,7 @@ MarkItDown est créé par l'équipe AutoGen de Microsoft.
 """)
         about_layout.addWidget(about_text)
         about_widget.setLayout(about_layout)
-        tabs.addTab(about_widget, "ℹ️ À propos")
+        tabs.addTab(about_widget, "[i] A propos")
 
         layout.addWidget(tabs)
 
@@ -378,7 +378,7 @@ MarkItDown est créé par l'équipe AutoGen de Microsoft.
         preview = markdown[:500] + "..." if len(markdown) > 500 else markdown
         self.preview_text.setMarkdown(preview)
 
-        self.status_bar.showMessage(f"✅ Conversion réussie! ({len(markdown)} caractères)")
+        self.status_bar.showMessage(f"[OK] Conversion reussie! ({len(markdown)} caracteres)")
         QMessageBox.information(self, "Succès", "Fichier converti avec succès!")
 
     def on_conversion_error(self, error_msg: str):
@@ -388,7 +388,7 @@ MarkItDown est créé par l'équipe AutoGen de Microsoft.
         self.progress_bar.setVisible(False)
         self.progress_bar.setValue(0)
 
-        self.status_bar.showMessage("❌ Erreur lors de la conversion")
+        self.status_bar.showMessage("[!] Erreur lors de la conversion")
         QMessageBox.critical(self, "Erreur de conversion", error_msg)
 
     def save_markdown(self):
@@ -411,7 +411,7 @@ MarkItDown est créé par l'équipe AutoGen de Microsoft.
             try:
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(self.current_markdown)
-                self.status_bar.showMessage(f"✅ Fichier enregistré: {file_path}")
+                self.status_bar.showMessage(f"[OK] Fichier enregistre: {file_path}")
                 QMessageBox.information(self, "Succès", f"Fichier enregistré: {Path(file_path).name}")
             except Exception as e:
                 QMessageBox.critical(self, "Erreur", f"Impossible d'enregistrer le fichier:\n{str(e)}")
@@ -424,7 +424,7 @@ MarkItDown est créé par l'équipe AutoGen de Microsoft.
 
         clipboard = QApplication.clipboard()
         clipboard.setText(self.current_markdown)
-        self.status_bar.showMessage("✅ Texte copié dans le presse-papiers!")
+        self.status_bar.showMessage("[OK] Texte copie dans le presse-papiers!")
 
 
 def main():
