@@ -172,6 +172,16 @@
 - **Solution:** `setup_markitdown_path()` function with environment detection
 - **Files Changed:** `markitdown_gui.py`, `build_exe.spec`
 
+### Issue 5: Build Scripts Not Using Spec File (BUG FOUND & FIXED)
+**Status:** ✅ FIXED (commit a3f1c81) - NEW
+- **Problem:** `build_executable.bat` and `build_executable.ps1` ignored `build_exe.spec`
+- **Cause:** Build scripts used inline PyInstaller options instead of spec file reference
+- **Impact:** Critical dependencies (magika, onnxruntime) might be excluded from executable
+- **Solution:** Simplified both scripts to use `pyinstaller build_exe.spec`
+- **Files Changed:** `build_executable.bat`, `build_executable.ps1`
+- **Removed:** Duplicate/outdated `MarkItDown.spec` file (which had incomplete configuration)
+- **Testing:** All conversions work correctly with HTML, DOCX, UTF-8 encoding
+
 ---
 
 ## Testing & Quality Assurance
