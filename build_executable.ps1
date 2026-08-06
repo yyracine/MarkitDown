@@ -28,32 +28,7 @@ if (Test-Path "dist") {
 Write-Host ""
 Write-Host "[2/4] Building executable..." -ForegroundColor Yellow
 
-$hideImports = @(
-    "PyQt6.QtCore",
-    "PyQt6.QtGui",
-    "PyQt6.QtWidgets",
-    "markitdown",
-    "markitdown.converters",
-    "bs4",
-    "requests",
-    "markdownify",
-    "magika",
-    "charset_normalizer",
-    "defusedxml"
-)
-
-$hideImportArgs = $hideImports | ForEach-Object { "--hidden-import=$_" }
-
-& .\.venv\Scripts\pyinstaller `
-    --onedir `
-    --windowed `
-    --name MarkItDown `
-    --distpath "./dist" `
-    --workpath "./build" `
-    --specpath "." `
-    $hideImportArgs `
-    --add-data "markitdown/packages/markitdown/src;markitdown/packages/markitdown/src" `
-    markitdown_gui.py
+& .\.venv\Scripts\pyinstaller build_exe.spec
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[ERROR] Build failed!" -ForegroundColor Red

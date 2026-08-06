@@ -27,26 +27,7 @@ if exist dist\ (
 
 echo.
 echo [2/4] Building executable...
-.\.venv\Scripts\pyinstaller ^
-    --onedir ^
-    --windowed ^
-    --name MarkItDown ^
-    --distpath "./dist" ^
-    --workpath "./build" ^
-    --specpath "." ^
-    --hidden-import=PyQt6.QtCore ^
-    --hidden-import=PyQt6.QtGui ^
-    --hidden-import=PyQt6.QtWidgets ^
-    --hidden-import=markitdown ^
-    --hidden-import=markitdown.converters ^
-    --hidden-import=bs4 ^
-    --hidden-import=requests ^
-    --hidden-import=markdownify ^
-    --hidden-import=magika ^
-    --hidden-import=charset_normalizer ^
-    --hidden-import=defusedxml ^
-    --add-data "markitdown/packages/markitdown/src;markitdown/packages/markitdown/src" ^
-    markitdown_gui.py
+.\.venv\Scripts\pyinstaller build_exe.spec
 
 echo.
 echo [3/4] Verifying build...
