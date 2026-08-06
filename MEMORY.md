@@ -173,7 +173,7 @@
 - **Files Changed:** `markitdown_gui.py`, `build_exe.spec`
 
 ### Issue 5: Build Scripts Not Using Spec File (BUG FOUND & FIXED)
-**Status:** ✅ FIXED (commit a3f1c81) - NEW
+**Status:** ✅ FIXED (commit a3f1c81)
 - **Problem:** `build_executable.bat` and `build_executable.ps1` ignored `build_exe.spec`
 - **Cause:** Build scripts used inline PyInstaller options instead of spec file reference
 - **Impact:** Critical dependencies (magika, onnxruntime) might be excluded from executable
@@ -181,6 +181,37 @@
 - **Files Changed:** `build_executable.bat`, `build_executable.ps1`
 - **Removed:** Duplicate/outdated `MarkItDown.spec` file (which had incomplete configuration)
 - **Testing:** All conversions work correctly with HTML, DOCX, UTF-8 encoding
+
+### Issue 6: PyInstaller Configuration Bug (IDENTIFIED)
+**Status:** ✅ FIXED (commit ff99f0b)
+- **Problem:** Invalid hidden imports and incorrect EXE configuration in spec file
+- **Cause:** 
+  - `markitdown.converters` in hiddenimports (module doesn't exist)
+  - EXE section included binaries/datas (should exclude for onedir)
+- **Solution:**
+  - Removed non-existent `markitdown.converters`
+  - Added `magika` to hidden imports
+  - Added `exclude_binaries=True` to EXE section
+  - Simplified build scripts with `-y` flag for force rebuild
+- **Files Changed:** `build_exe.spec`, `build_executable.bat`, `build_executable.ps1`
+- **Testing:** Executable builds successfully (7.24 MB) and launches without errors
+
+### Issue 7: PyInstaller Directory Lock (KNOWN LIMITATION)
+**Status:** ⚠️ KNOWN - No simple fix available
+- **Problem:** After PyInstaller build completes, `dist/MarkItDown` directory remains locked
+- **Cause:** Windows file locking after PyInstaller COLLECT phase completion
+- **Impact:** Cannot rebuild executable without manual cleanup (kill processes, delete directory, restart)
+- **Workaround:**
+  ```powershell
+  # Kill Python processes
+  Get-Process python* | Stop-Process -Force
+  # Delete old build
+  Remove-Item -Path "dist", "build" -Recurse -Force
+  # Rebuild
+  .\.build_executable.bat
+  ```
+- **Note:** This is a PyInstaller/Windows limitation, not specific to this project
+- **Status:** Executable still works perfectly once built; only rebuilds are affected
 
 ---
 
